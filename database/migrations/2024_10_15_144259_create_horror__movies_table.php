@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('horror__movies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->integer('year');
             $table->timestamps();
