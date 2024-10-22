@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('horror__movies', function (Blueprint $table) {
+        Schema::create('horror_movies', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->string('title');
             $table->text('description')->nullable();
             $table->integer('year');
-            $table->timestamps();
+            $table->string('image_url');
+
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('horror__movies');
+        Schema::dropIfExists('horror_movies');
     }
 };

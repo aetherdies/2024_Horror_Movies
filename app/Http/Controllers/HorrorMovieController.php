@@ -12,7 +12,8 @@ class HorrorMovieController extends Controller
      */
     public function index()
     {
-        //
+        $horror_movie = Horror_Movie::all();
+        return view('horror_movie.index', compact('horror_movies'));
     }
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Horror_Movie extends Model
+class HorrorMovie extends Model
 {
     use HasFactory;
 }
