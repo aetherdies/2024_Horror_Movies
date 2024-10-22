@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\HorrorMovie;
+use App\Models\Horror;
 use Carbon\Carbon;
 
-class HorrorMovieSeeder extends Seeder
+class HorrorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class HorrorMovieSeeder extends Seeder
     public function run(): void
     {
         $currentTimestamp = Carbon::now();
-        HorrorMovie::insert([
+        Horror::insert([
             ['title' => '28 Days Later',
             'description' => 'A man wakes up in a hospital during a zombie apocalypse, which he must learn to survive.',
             'year' => 2002,

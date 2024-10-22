@@ -11,13 +11,13 @@
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">List of Horror Movies:</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach($horrormovies as $horrormovie)
-                        <x-horrormovie-card
-                            :title="$horrormovie->title"
-                            :director="$horrormovie->director"
-                            :image="$horrormovie->image"
-                            :year="$horrormovie->year"
-                            :description="$horrormovie->description"
+                        @foreach($Horrors as $Horror)
+                        <x-Horror-card
+                            :title="$Horror->title"
+                            :director="$Horror->director"
+                            :image="$Horror->image"
+                            :year="$Horror->year"
+                            :description="$Horror->description"
                         />
                         @endforeach
                     </div>

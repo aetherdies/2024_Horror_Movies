@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HorrorMovieController;
+use App\Http\Controllers\HorrorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,5 +20,8 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+
+Route::get('/Horror', [HorrorController::class, 'index'])->name('horror_movie.index');
 
 require __DIR__.'/auth.php';

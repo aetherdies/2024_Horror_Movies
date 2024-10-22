@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Horror_Movie;
+use App\Models\Horror;
 use Illuminate\Http\Request;
 
-class HorrorMovieController extends Controller
+class HorrorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $horror_movie = Horror_Movie::all();
-        return view('horror_movie.index', compact('horror_movies'));
+        $horror = Horror::all();
+        return view('horror_movie.index', compact('horror'));
     }
 
     /**
