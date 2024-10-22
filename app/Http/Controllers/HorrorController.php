@@ -13,7 +13,7 @@ class HorrorController extends Controller
     public function index()
     {
         $horror = Horror::all();
-        return view('horror_movie.index', compact('horror'));
+        return view('horror.index', compact('horror'));
     }
 
     /**
@@ -35,7 +35,7 @@ class HorrorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Horror_Movie $horror_Movie)
+    public function show(horror $horror)
     {
         //
     }
@@ -43,7 +43,7 @@ class HorrorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Horror_Movie $horror_Movie)
+    public function edit(horror $horror)
     {
         //
     }
@@ -51,7 +51,7 @@ class HorrorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Horror_Movie $horror_Movie)
+    public function update(Request $request, horror $horror)
     {
         //
     }
@@ -59,7 +59,7 @@ class HorrorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Horror_Movie $horror_Movie)
+    public function destroy(horror $horror)
     {
         //
     }
