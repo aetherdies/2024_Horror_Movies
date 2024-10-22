@@ -22,6 +22,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/Horror', [HorrorController::class, 'index'])->name('horror.index');
+Route::get('/horrors', [HorrorController::class, 'index'])->name('horrors.index');
 
 require __DIR__.'/auth.php';
