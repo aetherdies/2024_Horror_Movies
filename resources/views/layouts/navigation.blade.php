@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('horrors.index')" :active="request()->routeIs('horrors.index')">
+                    <x-nav-link :href="route('horror.php')" :active="request()->routeIs('horror.php')">
                         {{ __('View all Horror Movies') }}
                     </x-nav-link>
                 </div>

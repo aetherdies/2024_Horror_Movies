@@ -13,7 +13,7 @@ class HorrorController extends Controller
     public function index()
     {
         $horrors = Horror::all();
-        return view('horrors.index', compact('horrors'));
+        return view('horror.php', compact('horrors'));
     }
 
     /**
