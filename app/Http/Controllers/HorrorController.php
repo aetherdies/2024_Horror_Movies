@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Horror;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HorrorController extends Controller
 {
@@ -13,7 +14,7 @@ class HorrorController extends Controller
     public function index()
     {
         $horrors = Horror::all();
-        return view('horror.php', compact('horrors'));
+        return view('horror.index', compact('horror'));
     }
 
     /**
@@ -21,7 +22,7 @@ class HorrorController extends Controller
      */
     public function create()
     {
-        //
+        return view('horror.create');
     }
 
     /**
@@ -29,7 +30,29 @@ class HorrorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required|max:500',
+            'year' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jfif,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/horror'), $imageName);
+        }
+
+        Horror::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'year' => $request->year,
+            'image' => $imageName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return to_route('horror.index')->with('success', 'Horror Movie Added Successfully!');
     }
 
     /**
@@ -37,7 +60,7 @@ class HorrorController extends Controller
      */
     public function show(horror $horror)
     {
-        //
+        return view('horror.show')->with('horror', $horror);
     }
 
     /**
