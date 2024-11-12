@@ -22,6 +22,9 @@ class HorrorController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('horror.index')->with('error', 'Access denied.');
+        }
         return view('horror.create');
     }
 
