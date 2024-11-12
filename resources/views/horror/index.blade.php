@@ -4,15 +4,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="border p-4 rounded-lg shadow-md">
+                        @foreach ($horrors as $horror)
                         <a href="{{ route('horror.show', $horror) }}">
-                            <x-horror-card :title="$horror->title" :image="$horror->image" />
+                            <x-horror-card
+                                :title="$horror->title"
+                                :image="$horror->image"
+                                :year="$horror->year"
+                                :description="$horror->description"
+                            />
                         </a>
-
+                        @endforeach
                         <div class="mt-4 flex space-x-2">
                             <a href="{{ route('horror.edit', $horror) }}" class="text-gray-600 bg-orange-300 hover:bg-orange-700 font-bold py-2 px-4">
                                 Edit
                             </a>
-
                             <form action="{{ route('horror.destroy', $horror) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this movie?');">
                                 @csrf
                                 @method('DELETE')

@@ -20,8 +20,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/horror', [HorrorController::class, 'index'])->name('horror.index');
     Route::get('/horror/create', [HorrorController::class, 'create'])->name('horror.create');
+    Route::post('/horror', [HorrorController::class, 'store'])->name('horror.store');
     Route::get('/horror/{horror}', [HorrorController::class, 'show'])->name('horror.show');
-    Route::get('/horror', [HorrorController::class, 'store'])->name('horror.store');
+    Route::get('/horror/{horror}/edit', [HorrorController::class, 'edit'])->name('horror.edit');
+    Route::put('/horror/{horror}', [HorrorController::class, 'update'])->name('horror.update');
+    Route::delete('/horror/{horror}', [HorrorController::class, 'destroy'])->name('horror.destroy');
+
+
 });
 
 require __DIR__.'/auth.php';

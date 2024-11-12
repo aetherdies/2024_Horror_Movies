@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">Horror Movie Details:</h3>
-                        <x-horror-card
+                        <x-horror-details
                             :title="$horror->title"
                             :image="$horror->image"
                             :year="$horror->year"
