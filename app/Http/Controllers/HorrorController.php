@@ -31,31 +31,21 @@ class HorrorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Horror $horror)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required|max:500',
-            'year' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jfif,jpg,gif|max:2048',
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string|max:1000',
         ]);
 
-        if ($request->hasFile('image')) {
-
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images/horror'), $imageName);
-        }
-
-        Horror::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'year' => $request->year,
-            'image' => $imageName,
-            'created_at' => now(),
-            'updated_at' => now()
+        $horror->reviews()->create([
+            'user_id' => auth()->id(),
+            'rating' => $request->input('rating'),
+            'comment' => $request->input('comment'),
+            'horror_id' => $horror->id
         ]);
 
-        return to_route('horror.index')->with('success', 'Horror Movie Added Successfully!');
+        return redirect()->route('horror.show', $horror)->with('success', 'Review Added Successfully!');
     }
 
     /**
@@ -63,7 +53,8 @@ class HorrorController extends Controller
      */
     public function show(horror $horror)
     {
-        return view('horror.show')->with('horror', $horror);
+        $horror->load('reviews.user');
+        return view('horror.show', compact('horror'));
     }
 
     /**

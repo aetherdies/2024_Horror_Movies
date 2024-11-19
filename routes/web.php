@@ -26,7 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/horror/{horror}', [HorrorController::class, 'update'])->name('horror.update');
     Route::delete('/horror/{horror}', [HorrorController::class, 'destroy'])->name('horror.destroy');
 
-
+    Route::resource('reviews', ReviewController::class);
+    Route::post('horror/{horror}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 });
 
 require __DIR__.'/auth.php';
