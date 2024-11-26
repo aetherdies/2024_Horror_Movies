@@ -24,4 +24,9 @@ class Horror extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function directors()
+    {
+        return $this->belongsToMany(Director::class);
+    }
 }
