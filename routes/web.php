@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('reviews', ReviewController::class);
     Route::post('horror/{horror}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+    Route::resource('director', DirectorController::class)->middleware('auth');
 });
 
 require __DIR__.'/auth.php';
