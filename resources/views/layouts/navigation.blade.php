@@ -24,6 +24,10 @@
                         <x-nav-link :href="route('horror.create')" :active="request()->routeIs('horror.create')">
                             {{ __('Create New Horror Movie') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('director.create')" :active="request()->routeIs('director.create')">
+                            {{ __('Create New Horror Director') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>

@@ -14,11 +14,11 @@ class DirectorSeeder extends Seeder
     public function run(): void
     {
         Director::insert([
-            ['name' => 'Danny Boyle', 'image_url' => 'dannyboyle.jfif', 'bio' => 'Director of 28 Days Later.' ],
-            ['name' => 'Paco Plaza', 'image_url' => 'pacoplaza.jfif', 'bio' => 'Director of REC.' ],
-            ['name' => 'David Fincher', 'image_url' => 'davidfincher.jfif', 'bio' => 'Director of Se7en.' ],
-            ['name' => 'Edgar Wright', 'image_url' => 'edgarwright.jfif', 'bio' => 'Director of Shaun of the Dead.' ],
-            ['name' => 'Scott Derrickson', 'image_url' => 'scottderrickson.jfif', 'bio' => 'Director of Deliver Us From Evil.' ],
+            ['name' => 'Danny Boyle', 'image' => 'dannyboyle.jfif', 'bio' => 'Director of 28 Days Later.' ],
+            ['name' => 'Paco Plaza', 'image' => 'pacoplaza.jfif', 'bio' => 'Director of REC.' ],
+            ['name' => 'David Fincher', 'image' => 'davidfincher.jfif', 'bio' => 'Director of Se7en.' ],
+            ['name' => 'Edgar Wright', 'image' => 'edgarwright.jfif', 'bio' => 'Director of Shaun of the Dead.' ],
+            ['name' => 'Scott Derrickson', 'image' => 'scottderrickson.jfif', 'bio' => 'Director of Deliver Us From Evil.' ],
         ]);
     }
 }

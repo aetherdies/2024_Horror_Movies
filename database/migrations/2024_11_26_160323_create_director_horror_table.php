@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('director_horror', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image_url')->nullable();
-            $table->text('bio')->nullable();
+            $table->foreignId('horror_id')->constrained()->onDelete('cascade');
+            $table->foreignId('director_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

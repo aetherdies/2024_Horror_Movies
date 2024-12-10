@@ -12,7 +12,8 @@ class DirectorController extends Controller
      */
     public function index()
     {
-        //
+        $director = Director::with('horror')->get();
+        return view('director.index', compact('director'));
     }
 
     /**
@@ -20,7 +21,12 @@ class DirectorController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('horror.index')->with('error', 'Access denied.');
+        }
+
+        $horror= Horror::all();
+        return view('director.create', compact('horror'));
     }
 
     /**
@@ -28,7 +34,30 @@ class DirectorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('director.index')->with('error', 'Access denied.');
+        }
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:225',
+            'image' => 'nullable|image|max:2048',
+            'bio' => 'nullable|string|max:100',
+            'horror' => 'array',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('horror/images'), $imageName);
+            $validated['image'] = $imageName;
+        }
+
+        $director = Director::create($validated);
+
+        if ($request->has('horror')) {
+            $director->horror()->attach($request->horror);
+        }
+
+        return redirect()->route('director.index')->with('success', 'Director Added Successfully!');
     }
 
     /**
@@ -36,7 +65,8 @@ class DirectorController extends Controller
      */
     public function show(Director $director)
     {
-        //
+        $director->load('horror');
+        return (view('director.show', compact('director')));
     }
 
     /**
@@ -44,7 +74,9 @@ class DirectorController extends Controller
      */
     public function edit(Director $director)
     {
-        //
+        $horror = Horror::all();
+        $directorHorror = $director->horror->pluck('id')->toArray();
+        return view('director.edit', compact('director', 'horror', 'directorHorror'));
     }
 
     /**
@@ -52,7 +84,20 @@ class DirectorController extends Controller
      */
     public function update(Request $request, Director $director)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:225',
+            'image' => 'nullable|image|max:2048',
+            'bio' => 'nullable|string|max:100',
+            'horror' => 'array',
+        ]);
+
+        $director->update($validated);
+
+        if ($request->has('horror')) {
+            $director->horror()->sync($request->horror);
+        }
+
+        return redirect()->route('director.index')->with('success', 'Director Updated Successfully!');
     }
 
     /**
@@ -60,6 +105,9 @@ class DirectorController extends Controller
      */
     public function destroy(Director $director)
     {
-        //
+        $director->horror()->detach();
+        $director->delete();
+
+        return redirect()->route('director.index')->with('success', 'Director Deleted Successfully!');
     }
 }
